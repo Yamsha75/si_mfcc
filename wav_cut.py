@@ -23,15 +23,18 @@ if os.path.isdir(FOLDER_RAW):
 				n_channels = audio_raw.getnchannels()
 				samp_width = audio_raw.getsampwidth()
 				framerate  = audio_raw.getframerate()
+				n_frames = audio_raw.getnframes()
 					
 				audio_cut = wave.open(FOLDER_CUT + file, 'wb')
+				
+				out_n_frames = int(cut_len * framerate)
 				
 				audio_cut.setnchannels(1)
 				audio_cut.setsampwidth(samp_width)
 				audio_cut.setframerate(framerate)
-				audio_cut.setnframes(n_frames)
+				audio_cut.setnframes(out_n_frames)
 				
-				n_frames = int(cut_len * framerate)
+				audio_raw.setpos(n_frames - out_n_frames)
 				if n_channels == 2:
 					# stereo
 					for _ in range(n_frames):
