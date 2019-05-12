@@ -24,20 +24,25 @@ if os.path.isdir(FOLDER_RAW):
 				samp_width = audio_raw.getsampwidth()
 				framerate  = audio_raw.getframerate()
 					
-				n_frames = int(cut_len * framerate)
-				frames = audio_raw.readframes(n_frames)
-				
-				audio_raw.close()
-				
 				audio_cut = wave.open(FOLDER_CUT + file, 'wb')
 				
-				audio_cut.setnchannels(n_channels)
+				audio_cut.setnchannels(1)
 				audio_cut.setsampwidth(samp_width)
 				audio_cut.setframerate(framerate)
 				audio_cut.setnframes(n_frames)
 				
-				audio_cut.writeframesraw(frames)
+				n_frames = int(cut_len * framerate)
+				if n_channels == 2:
+					# stereo
+					for _ in range(n_frames):
+						temp = audio_raw.readframes(1)
+						audio_cut.writeframesraw(temp[0:2]) # writes left channel to new file
+				else:
+					# mono
+					frames = audio_raw.readframes(n_frames)
+					audio_cut.writeframesraw(frames)
 				
+				audio_raw.close()
 				audio_cut.close()
 				n_cut = n_cut + 1
 				print('cut ' + str(n_cut) + '/' + str(n_files) + ' files', end='\r')
