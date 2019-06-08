@@ -3,7 +3,7 @@ import numpy as np
 import scipy.io.wavfile as wav
 import python_speech_features as psf
 
-FOLDER_CUT = 'DATASET_CUT\\'
+FOLDER_CUT = 'AUDIO_CUT\\'
 FOLDER_MFCC = 'MFCC\\'
 NFFT = 1200
 
