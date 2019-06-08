@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 
 FOLDER_MFCC = 'MFCC\\'
-FOLDER_DATASET = 'DATA\\'
+FOLDER_DATASET = 'DATASET\\'
 
 print('mfcc numpy array files to one numpy array file')
 print('labels to csv')
