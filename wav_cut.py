@@ -2,8 +2,8 @@ import os
 import wave
 import shutil
 
-FOLDER_RAW = 'DATASET_RAW\\'
-FOLDER_CUT = 'DATASET_CUT\\'
+FOLDER_RAW = 'AUDIO_RAW\\'
+FOLDER_CUT = 'AUDIO_CUT\\'
 
 cut_len = 2.910 # dlugosc do ktorej zostanie przyciety plik [s]
 
