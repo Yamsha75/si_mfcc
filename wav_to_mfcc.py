@@ -1,5 +1,5 @@
 import os
-import numpy
+import numpy as np
 import scipy.io.wavfile as wav
 import python_speech_features as psf
 
@@ -20,7 +20,7 @@ if os.path.isdir(FOLDER_CUT):
 			if os.path.isfile(FOLDER_CUT + file):
 				rate, sig = wav.read(FOLDER_CUT + file)
 				mfcc_feat = psf.mfcc(sig, rate, nfft=NFFT)
-				numpy.save(FOLDER_MFCC + file[:-4] + '.mfcc', mfcc_feat)
+				np.save(FOLDER_MFCC + file[:-4] + '.mfcc', mfcc_feat)
 				
 				n_mfcc = n_mfcc + 1
 				print('saved ' + str(n_mfcc) + '/' + str(n_files) + ' mfcc files', end='\r')
